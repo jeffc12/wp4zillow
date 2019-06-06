@@ -2,21 +2,21 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-    entry: './main/main.js',
+    entry: './src/main.js',
     output: {
-        path: path.resolve(__dirname, 'build'),
-        filename: 'main.bundle.js'
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'bundle.js'
     },
     module: {
-        loaders: [
+        rules: [
             {
-                test: /\.js$/,
-                loader: 'babel-loader',
-                query: {
-                    presets: ['es2015']
-                }
+              test: /\.css$/,
+              use: [
+                'style-loader',
+                'css-loader'
+              ]
             }
-        ]
+          ]
     },
     stats: {
         colors: true
