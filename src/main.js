@@ -1,10 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import './style.css';
+import JSXFile from "./JSXFileTest.jsx";
 
 const App = () => {
   return (
-    <div></div>
+    <div>
+      <JSXFile></JSXFile>
+    </div>
   );
 };
 
