@@ -10,7 +10,7 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 })
 
 const MiniCssExtractPluginConfig = new MiniCssExtractPlugin({
-  filename: 'style.[contenthash].css'
+  filename: 'style.[hash].css'
 })
 
 module.exports = {
@@ -51,6 +51,17 @@ module.exports = {
           }
         ]
       },
+      {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 999999 
+            }
+          }
+        ]
+      }
     ]
   },
   plugins: [HtmlWebpackPluginConfig, MiniCssExtractPluginConfig],
