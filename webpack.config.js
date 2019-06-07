@@ -1,15 +1,15 @@
-var path = require('path');
-var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-var HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
+const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
   template: './dist/index.html',
   filename: './index.html',
   inject: 'body'
 })
 
-var MiniCssExtractPluginConfig = new MiniCssExtractPlugin({
+const MiniCssExtractPluginConfig = new MiniCssExtractPlugin({
   filename: 'style.[contenthash].css'
 })
 
@@ -22,35 +22,34 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.(jsx|js)$/,
+        loader: 'babel-loader',
+        query: {
+          presets: ['@babel/react', '@babel/preset-env'],
+          compact: false
+        }
+      },
+      {
         test: /\.scss$/,
         use: [
           {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              sourceMap: true
-            }
+            loader: MiniCssExtractPlugin.loader
           },
           {
-            loader: 'css-loader',
-            options: {
-              sourceMap: true
-            }
+            loader: 'css-loader'
           },
           {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: true
-            }
+            loader: 'sass-loader'
           }
         ]
       },
       {
-        test: /\.(jsx|js)$/,
-        loader: 'babel-loader',
-        query: {
-          presets: ["@babel/react", "@babel/preset-env"],
-          compact: false
-        }
+        test: /\.(jpeg|jpg|png|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+          }
+        ]
       },
     ]
   },
