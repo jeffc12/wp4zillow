@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from "react-dom";
-import './style.css';
+import './style.scss';
 import Tile from "./jsxFileTest.jsx";
 
 class App extends Component {

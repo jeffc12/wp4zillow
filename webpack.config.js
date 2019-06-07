@@ -1,11 +1,16 @@
 var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 var HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
   template: './dist/index.html',
   filename: './index.html',
   inject: 'body'
+})
+
+var MiniCssExtractPluginConfig = new MiniCssExtractPlugin({
+  filename: 'style.[contenthash].css'
 })
 
 module.exports = {
@@ -17,10 +22,26 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/,
+        test: /\.scss$/,
         use: [
-          'style-loader',
-          'css-loader'
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              sourceMap: true
+            }
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true
+            }
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true
+            }
+          }
         ]
       },
       {
@@ -33,7 +54,7 @@ module.exports = {
       },
     ]
   },
-  plugins: [HtmlWebpackPluginConfig],
+  plugins: [HtmlWebpackPluginConfig, MiniCssExtractPluginConfig],
   stats: {
     colors: true
   },
