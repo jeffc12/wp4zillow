@@ -12,7 +12,7 @@ class App extends Component {
       <div>
         <h1>Webpack 4 Zillow</h1>
 
-        <tile />
+        <Tile />
 
         <p>.JPEG/.JPG/.PNG/.GIF references:</p>
         <img src={SwimmingShiba} />
